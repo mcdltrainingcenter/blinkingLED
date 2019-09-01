@@ -1,0 +1,48 @@
+/*******************************************************************************
+//==============================================================================
+// Author: Rally Uminga
+// Project: blinkingLED1
+// Project Description: Experiment 1: Blinking LED @ RB0
+// Date: September 1, 2019
+// Compiler: MikroC for Pro Ver. 7.1.0
+// Version: blinkingLED1V2019.09.01.001
+// MCU: PIC16F876A @ 20MHz
+// Copyright: MCDL Training Center
+*******************************************************************************/
+/*******************************************************************************
+
+Configuration Bits can be edited using Project then Edit Project Wizard:
+
+Oscillation Selection: HS oscillator
+Watchdog Timer: Disabled
+Power-up Timer: Enabled
+Brown-out Reset: Enabled
+Low-Voltage (Single-Supply) In-Circuit Serial Programming: Disabled
+Data EEPROM Memory Code Protection: Disabled
+Flash Program Memory Write: Disabled
+In-Circuit Debugger Mode: Disabled
+Flash Program Memory Code: Disabled
+
+*******************************************************************************/
+
+// Initialization
+
+sbit LED at RB0_bit;	            	//RB0 bit as LED
+
+// main
+void main()
+ {
+	ADCON1 = 0x07;     	        //All I/O pins are configured as digital
+	CMCON = 0x07;             	// Disabale comparators
+	TRISB = 0b00000000;      	// PORTB are all Outputs
+	PORTB = 0b00000000;      	// PORTB are all Initialize as 0
+
+	while(1)                       // Infinite Loop    
+	{
+		LED = 1;	       // RB0 is ON
+		Delay_ms(300);         // Delay 300ms
+		LED = 0;               // RB0 is OFF
+		Delay_ms(300);         // Delay 300ms
+	} 
+}
+
